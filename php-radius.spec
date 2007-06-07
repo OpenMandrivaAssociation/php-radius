@@ -52,6 +52,6 @@ install -m0755 %{soname} %{buildroot}%{_libdir}/php/extensions/
 
 %files 
 %defattr(-,root,root)
-%doc examples CREDITS radius.conf README*
+%doc examples CREDITS radius.conf
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
