@@ -5,16 +5,14 @@
 
 Summary:	Radius client library for PHP
 Name:		php-%{modname}
-Version:	1.2.4
-Release:	%mkrel 10
+Version:	1.2.5
+Release:	%mkrel 1
 Group:		Development/PHP
 License:	BSD
 URL:		http://pecl.php.net/package/radius
 Source0:	%{modname}-%{version}.tar.bz2
-Source1:	%{modname}.ini.bz2
+Source1:	%{modname}.ini
 BuildRequires:	php-devel >= 3:5.2.0
-Provides:	php5-radius
-Obsoletes:	php5-radius
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -28,6 +26,8 @@ example against Windows Active-Directory via IAS).
 %prep
 
 %setup -q -n %{modname}-%{version}
+
+cp %{SOURCE1} %{inifile}
 
 %build
 
@@ -44,12 +44,8 @@ mv modules/*.so .
 install -d %{buildroot}%{_libdir}/php/extensions
 install -d %{buildroot}%{_sysconfdir}/php.d
 
-cat > README.%{modname} << EOF
-The %{name} package contains a dynamic shared object (DSO) for PHP. 
-EOF
-
-bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/php.d/%{inifile}
-install -m755 %{soname} %{buildroot}%{_libdir}/php/extensions/
+install -m0644 %{inifile} %{buildroot}%{_sysconfdir}/php.d/%{inifile}
+install -m0755 %{soname} %{buildroot}%{_libdir}/php/extensions/
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
@@ -59,5 +55,3 @@ install -m755 %{soname} %{buildroot}%{_libdir}/php/extensions/
 %doc examples CREDITS radius.conf README*
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
-
-
