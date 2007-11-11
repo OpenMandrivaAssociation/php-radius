@@ -6,7 +6,7 @@
 Summary:	Radius client library for PHP
 Name:		php-%{modname}
 Version:	1.2.5
-Release:	%mkrel 3
+Release:	%mkrel 4
 Group:		Development/PHP
 License:	BSD
 URL:		http://pecl.php.net/package/radius
@@ -47,6 +47,18 @@ install -d %{buildroot}%{_sysconfdir}/php.d
 
 install -m0644 %{inifile} %{buildroot}%{_sysconfdir}/php.d/%{inifile}
 install -m0755 %{soname} %{buildroot}%{_libdir}/php/extensions/
+
+%post
+if [ -f /var/lock/subsys/httpd ]; then
+    %{_initrddir}/httpd restart >/dev/null || :
+fi
+
+%postun
+if [ "$1" = "0" ]; then
+    if [ -f /var/lock/subsys/httpd ]; then
+	%{_initrddir}/httpd restart >/dev/null || :
+    fi
+fi
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
