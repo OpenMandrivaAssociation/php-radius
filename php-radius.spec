@@ -14,7 +14,6 @@ Source0:	%{modname}-%{version}.tar.bz2
 Source1:	%{modname}.ini
 BuildRequires:	php-devel >= 3:5.2.0
 Epoch:		1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 This package is based on the libradius of FreeBSD, with some modifications and
