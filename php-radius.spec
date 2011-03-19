@@ -6,7 +6,7 @@
 Summary:	Radius client library for PHP
 Name:		php-%{modname}
 Version:	1.2.5
-Release:	%mkrel 22
+Release:	%mkrel 23
 Group:		Development/PHP
 License:	BSD
 URL:		http://pecl.php.net/package/radius
