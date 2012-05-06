@@ -12,6 +12,7 @@ License:	BSD
 URL:		http://pecl.php.net/package/radius
 Source0:	%{modname}-%{version}.tar.bz2
 Source1:	%{modname}.ini
+Patch0:		radius-1.2.5-php54x.diff
 BuildRequires:	php-devel >= 3:5.2.0
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -26,6 +27,7 @@ example against Windows Active-Directory via IAS).
 %prep
 
 %setup -q -n %{modname}-%{version}
+%patch0 -p0
 
 cp %{SOURCE1} %{inifile}
 
