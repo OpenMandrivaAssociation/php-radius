@@ -1,0 +1,11 @@
+--- radius.c	2007-03-18 22:59:40.000000000 +0100
++++ radius.c.oden	2012-05-06 11:44:48.880143235 +0200
+@@ -62,7 +62,7 @@ static int le_radius;
+  *
+  * Every user visible function must have an entry in radius_functions[].
+  */
+-function_entry radius_functions[] = {
++zend_function_entry radius_functions[] = {
+ 	PHP_FE(radius_auth_open,    NULL)
+ 	PHP_FE(radius_acct_open,    NULL)
+ 	PHP_FE(radius_close,        NULL)
