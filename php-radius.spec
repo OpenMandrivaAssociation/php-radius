@@ -9,7 +9,7 @@ Version:	1.2.5
 Release:	28
 Group:		Development/PHP
 License:	BSD
-URL:		http://pecl.php.net/package/radius
+URL:		https://pecl.php.net/package/radius
 Source0:	%{modname}-%{version}.tar.bz2
 Source1:	%{modname}.ini
 Patch0:		radius-1.2.5-php54x.diff
